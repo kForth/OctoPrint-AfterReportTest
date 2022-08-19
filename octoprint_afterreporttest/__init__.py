@@ -7,7 +7,7 @@ import octoprint.plugin
 class AfterReportTestPlugin(octoprint.plugin.types.OctoPrintPlugin):
 
     # ~~ EventHandlerPlugin hook
-    def firmware_after_report_hook(self, comm_instance, firmware_capabilities, *args, **kwargs):
+    def firmware_capability_report_hook(self, comm_instance, firmware_capabilities, *args, **kwargs):
         self._logger.info("Capability Report Done: %s" % (json.dumps(firmware_capabilities)))
 
 __plugin_name__ = "AfterReportTest Plugin"
@@ -20,5 +20,5 @@ def __plugin_load__():
 
     global __plugin_hooks__
     __plugin_hooks__ = {
-        "octoprint.comm.protocol.firmware.after_report": __plugin_implementation__.firmware_after_report_hook
+        "octoprint.comm.protocol.firmware.capability_report": __plugin_implementation__.firmware_capability_report_hook
     }
